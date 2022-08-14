@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+
+
+// Resets
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 150ms ease-in-out;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+
+
+// Mixins //
+@mixin truncate-text {
+  width: 215px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: 500px) {
+    width: 85%;
+  }
+}
+
+
+
+// Global scope classes to use with JS
+div.minimize {
+  height: 40px;
+}
+
+div.list--active {
+  transform: translateX(0);
+
+  @media (max-width: 500px) {
+    transform: translateX(50%);
+  }
+}
+
+.conversation__bubble--left {
+  position: relative;
+
+  .conversation__text {
+    float: left;
+    max-width: 85%;
+    color: hsl(203, 100%, 94%);
+    background-color: hsl(226, 56%, 54%);
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-bottom-right-radius: 10px;
+    background-color: hsl(226, 48%, 38%);
+  }
+}
+
+.conversation__bubble--right {
+  position: relative;
+
+  .conversation__text {
+    float: right;
+    max-width: 85%;
+    color: hsl(42, 100%, 10%);
+    background-color: hsl(46, 56%, 54%);
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    border-bottom-left-radius: 10px;
+    background-color: hsl(46, 48%, 38%);
+  }
+}
+
+
+
+// Everything else
+body {
+  font-family: 'Poppins', sans-serif;
+  color: hsl(213, 56%, 16%);
+  overflow-y: hidden;
+}
+
+.mask {
+    margin-right: 500px;
+    margin-bottom: 200px;
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  right: 5rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  animation: appear 1s ease-in 0s;
+  box-shadow: 0 10px 20px hsla(0, 0, 0%, .15), 0 3px 6px hsla(0, 0, 0%, .10);
+  transition: height 400ms cubic-bezier(.65,.05,.36,1);
+
+  @media (max-width: 500px) {
+    right: 0;
+    width: auto;
+    height: 100vh;
+  }
+}
+
+.container {
+  width: 600px;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  transform: translateX(-300px);
+  transition: transform 400ms cubic-bezier(.65,.05,.36,1);
+
+  @media (max-width: 500px) {
+    width: 100%;
+    height: 100%;
+    transform: translateX(0);
+  }
+}
+
+.list, .conversation {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(216, 33%, 97%);
+
+  @media (max-width: 500px) {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    min-height: 40px;
+    border-bottom: 1px solid hsl(210, 14%, 83%);
+  }
+
+  &__header-actions {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__body {
+    height: 100%;
+    padding: 0.8rem;
+    position: relative;
+    overflow-y: auto;
+    background-color: hsl(210, 29%, 95%);
+    font-size: 14px;
+  }
+
+  .btn {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      color: hsl(221, 70%, 40%);
+    }
+
+    &:hover, &:focus {
+      background-color: hsl(221, 70%, 40%);
+      svg {
+        color: hsl(0, 0%, 100%);
+      }
+    }
+  }
+}
+
+.list {
+
+  &__header {
+    padding: 0 0.8rem;
+  }
+
+  &__chat {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: hsl(216, 33%, 97%);
+    box-shadow: 0 1px 3px hsla(0, 0, 0%, .2);
+    border-radius: 3px;
+    border: 1px solid transparent;
+    cursor: pointer;    
+    
+    &:hover, &:focus {
+      border: 1px solid hsl(221, 70%, 40%);
+      box-shadow: 0 0 3px hsl(226, 56%, 54%);
+    }
+  }
+
+  &__user {
+    margin-bottom: 0.3rem;
+  }
+
+  &__message {
+    display: inline-block;
+    color: hsl(210, 9%, 31%);
+    @include truncate-text();
+  }
+
+  &__sent {
+    display: inline-block;
+    vertical-align: text-bottom;
+  }
+
+  &__sent svg {
+    width: 1rem;
+    height: 1rem;
+    stroke: hsl(120, 100%, 26%);
+  }
+
+  &__sent svg:last-child {
+    margin-left: -0.7rem;
+  }
+
+  &__preview {
+    width: 100%;
+  }
+}
+
+.conversation {
+
+  &__info {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+    padding-left: 0.8rem;
+    color: hsl(226, 48%, 27%);
+    border-left: 1px solid hsl(210, 14%, 83%);
+  }
+
+  &__status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: hsl(97, 81%, 48%);
+    margin-right: 0.4rem;
+  }
+
+  &__bubble {
+    margin-bottom: 0.8rem;
+
+    &:before, &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+
+  &__text {
+    border-radius: 3px;
+    padding: 0.6rem;
+    overflow-wrap: break-word;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 1;
+    padding: 0.8rem;
+    border-top: 1px solid hsl(210, 14%, 83%);
+  }
+
+  &__write {
+    width: 80%;
+    padding: 0.4rem;
+    border: 0;
+    border-radius: 5px;
+    border: 1px solid hsl(210, 14%, 83%);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    
+    &:focus {
+      border: 1px solid hsl(226, 56%, 54%);
+      box-shadow: 0 0 3px hsl(226, 56%, 54%);
+    }
+  }
+
+  .btn--send {
+    border-radius: 3px;
+  }
+  
+}
+
+
+@keyframes appear {
+  1% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(-15px);
+  }
+  
+  65% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+  }

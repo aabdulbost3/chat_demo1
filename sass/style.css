@@ -1,0 +1,306 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 150ms ease-in-out;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+div.minimize {
+  height: 40px;
+}
+
+div.list--active {
+  transform: translateX(0);
+}
+@media (max-width: 500px) {
+  div.list--active {
+    transform: translateX(50%);
+  }
+}
+
+.conversation__bubble--left {
+  position: relative;
+}
+.conversation__bubble--left .conversation__text {
+  float: left;
+  max-width: 85%;
+  color: hsl(203deg, 100%, 94%);
+  background-color: hsl(226deg, 56%, 54%);
+}
+.conversation__bubble--left:before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-bottom-right-radius: 10px;
+  background-color: hsl(226deg, 48%, 38%);
+}
+
+.conversation__bubble--right {
+  position: relative;
+}
+.conversation__bubble--right .conversation__text {
+  float: right;
+  max-width: 85%;
+  color: hsl(42deg, 100%, 10%);
+  background-color: hsl(46deg, 56%, 54%);
+}
+.conversation__bubble--right:before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-bottom-left-radius: 10px;
+  background-color: hsl(46deg, 48%, 38%);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: hsl(213deg, 56%, 16%);
+  overflow-y: hidden;
+}
+
+.mask {
+  margin-right: 500px;
+  margin-bottom: 200px;
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  right: 5rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  -webkit-animation: appear 1s ease-in 0s;
+          animation: appear 1s ease-in 0s;
+  box-shadow: 0 10px 20px hsla(0deg, 0%, 0%, 0.15), 0 3px 6px hsla(0deg, 0%, 0%, 0.1);
+  transition: height 400ms cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+@media (max-width: 500px) {
+  .mask {
+    right: 0;
+    width: auto;
+    height: 100vh;
+  }
+}
+
+.container {
+  width: 600px;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  transform: translateX(-300px);
+  transition: transform 400ms cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+@media (max-width: 500px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    transform: translateX(0);
+  }
+}
+
+.list, .conversation {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(216deg, 33%, 97%);
+}
+@media (max-width: 500px) {
+  .list, .conversation {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+.list__header, .conversation__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  min-height: 40px;
+  border-bottom: 1px solid hsl(210deg, 14%, 83%);
+}
+.list__header-actions, .conversation__header-actions {
+  display: flex;
+  flex-direction: row;
+}
+.list__body, .conversation__body {
+  height: 100%;
+  padding: 0.8rem;
+  position: relative;
+  overflow-y: auto;
+  background-color: hsl(210deg, 29%, 95%);
+  font-size: 14px;
+}
+.list .btn, .conversation .btn {
+  width: 40px;
+  height: 40px;
+}
+.list .btn svg, .conversation .btn svg {
+  color: hsl(221deg, 70%, 40%);
+}
+.list .btn:hover, .list .btn:focus, .conversation .btn:hover, .conversation .btn:focus {
+  background-color: hsl(221deg, 70%, 40%);
+}
+.list .btn:hover svg, .list .btn:focus svg, .conversation .btn:hover svg, .conversation .btn:focus svg {
+  color: hsl(0deg, 0%, 100%);
+}
+
+.list__header {
+  padding: 0 0.8rem;
+}
+.list__chat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: hsl(216deg, 33%, 97%);
+  box-shadow: 0 1px 3px hsla(0deg, 0%, 0%, 0.2);
+  border-radius: 3px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.list__chat:hover, .list__chat:focus {
+  border: 1px solid hsl(221deg, 70%, 40%);
+  box-shadow: 0 0 3px hsl(226deg, 56%, 54%);
+}
+.list__user {
+  margin-bottom: 0.3rem;
+}
+.list__message {
+  display: inline-block;
+  color: hsl(210deg, 9%, 31%);
+  width: 215px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 500px) {
+  .list__message {
+    width: 85%;
+  }
+}
+.list__sent {
+  display: inline-block;
+  vertical-align: text-bottom;
+}
+.list__sent svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: hsl(120deg, 100%, 26%);
+}
+.list__sent svg:last-child {
+  margin-left: -0.7rem;
+}
+.list__preview {
+  width: 100%;
+}
+
+.conversation__info {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  flex-grow: 1;
+  padding-left: 0.8rem;
+  color: hsl(226deg, 48%, 27%);
+  border-left: 1px solid hsl(210deg, 14%, 83%);
+}
+.conversation__status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: hsl(97deg, 81%, 48%);
+  margin-right: 0.4rem;
+}
+.conversation__bubble {
+  margin-bottom: 0.8rem;
+}
+.conversation__bubble:before, .conversation__bubble:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.conversation__text {
+  border-radius: 3px;
+  padding: 0.6rem;
+  overflow-wrap: break-word;
+}
+.conversation__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 1;
+  padding: 0.8rem;
+  border-top: 1px solid hsl(210deg, 14%, 83%);
+}
+.conversation__write {
+  width: 80%;
+  padding: 0.4rem;
+  border: 0;
+  border-radius: 5px;
+  border: 1px solid hsl(210deg, 14%, 83%);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+.conversation__write:focus {
+  border: 1px solid hsl(226deg, 56%, 54%);
+  box-shadow: 0 0 3px hsl(226deg, 56%, 54%);
+}
+.conversation .btn--send {
+  border-radius: 3px;
+}
+
+@-webkit-keyframes appear {
+  1% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(-15px);
+  }
+  65% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes appear {
+  1% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(-15px);
+  }
+  65% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}/*# sourceMappingURL=style.css.map */
