@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="mask">
+
+    <div class="container">
+
+      <section class="list">
+
+        <header class="list__header">
+          <span>Conversations</span>
+        </header>
+
+        <div class="list__body">
+          
+          <a id="chat1" class="list__chat">
+            <div class="list__preview">
+              <h3 class="list__user">Nadia</h3>
+              <span class="list__message">How is it going?</span>
+            </div>
+          </a>
+
+          <a id="chat2" class="list__chat">
+            <div class="list__preview">
+              <h3 class="list__user">Susan</h3>
+              <span class="list__sent"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span class="list__message">The exam was very easy, don't you think?</span>
+            </div>
+          </a>
+
+          <a id="chat3" class="list__chat">
+            <div class="list__preview">
+              <h3 class="list__user">Mark</h3>
+              <span class="list__sent"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span class="list__message">Hey, did you see what happened to the car?</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section class="conversation">
+
+        <header class="conversation__header">
+          <button class="conversation__btn btn btn--list" title="Conversation list">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          </button>
+          <div class="conversation__info">
+            <span class="conversation__status"></span>
+            <span class="conversation__name">Nadia</span>
+          </div>
+          <div class="conversation__header-actions">
+            <button class="conversation__btn btn btn--camera" title="Start videocall">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+            </button>
+            <button class="conversation__btn btn btn--close" title="Close chat">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="conversation__body">
+          <div class="conversation__bubble conversation__bubble--left">
+            <p class="conversation__text">Hey!</p>
+          </div>
+          <div class="conversation__bubble conversation__bubble--left">
+            <p class="conversation__text">How is it going?</p>
+          </div>
+        </div>
+
+        <footer class="conversation__footer">
+          <input type="text" class="conversation__write">
+          <button class="conversation__btn btn btn--send" title="Send message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </footer>
+
+      </section>
+
+    </div>
+
+  </div>
+    <script src="./main.js"></script>
+</body>
+</html>
